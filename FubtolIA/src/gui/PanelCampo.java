@@ -73,6 +73,8 @@ public class PanelCampo extends JPanel{
             g2d.drawLine((int)MARGEN_RIGTH, (i * (int)alto) + (int)MARGEN_TOP, this.getWidth() - (int)MARGEN_RIGTH, (i * (int)alto) + (int)MARGEN_TOP);            
         }
         
+        //Dibujar Jugadores
+        
         super.paintComponent(g);
     }
     
