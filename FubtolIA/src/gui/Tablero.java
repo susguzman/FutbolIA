@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import logica.Partido;
 
 /**
  *
@@ -131,8 +132,11 @@ public class Tablero extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel2ComponentResized
 
     private void myInit(){
+        //Pardido
+        Partido p = new Partido();
+        
         //Dibujar campo
-        p_campo = new PanelCampo();
+        p_campo = new PanelCampo(p);
         p_campo.setBounds(2, 2, jPanel2.getWidth() - 4, jPanel2.getHeight() - 4);
         p_campo.setOpaque(false);
         jPanel2.add(p_campo);

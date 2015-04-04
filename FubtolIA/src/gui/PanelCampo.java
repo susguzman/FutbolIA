@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import logica.Jugador;
+import logica.Partido;
 
 /**
  *
@@ -15,10 +17,18 @@ public class PanelCampo extends JPanel{
     private final int ANCHO = 897, ALTO = 600;  
     private double MARGEN_BASE_TOP = 13, MARGEN_BASE_RIGTH = 47;
     private double MARGEN_TOP, MARGEN_RIGTH;
+    private Partido partido;
     private final ImageIcon CAMPO = new ImageIcon(getClass().getResource("/img/campo.jpg"));
+    private final ImageIcon R_PORTERO = new ImageIcon(getClass().getResource("/img/r_portero.png"));
+    private final ImageIcon R_DEFENSA = new ImageIcon(getClass().getResource("/img/r_defensa.png"));
+    private final ImageIcon R_DELANTERO = new ImageIcon(getClass().getResource("/img/r_delantero.png"));
+    private final ImageIcon A_PORTERO = new ImageIcon(getClass().getResource("/img/a_portero.png"));
+    private final ImageIcon A_DEFENSA = new ImageIcon(getClass().getResource("/img/a_defensa.png"));
+    private final ImageIcon A_DELANTERO = new ImageIcon(getClass().getResource("/img/a_delantero.png"));
     
-    public PanelCampo(){
-        super();
+    public PanelCampo(Partido p){
+        super();        
+        this.partido = p;
     }
     
     @Override
@@ -35,7 +45,6 @@ public class PanelCampo extends JPanel{
             }else{
                 MARGEN_RIGTH = MARGEN_BASE_RIGTH;
             }
-            //System.out.println("Margen rig:" + MARGEN_RIGTH);
         }else{
             MARGEN_RIGTH = MARGEN_BASE_RIGTH;
         }
@@ -43,7 +52,6 @@ public class PanelCampo extends JPanel{
         //Calcular Margene superior
         if(this.getHeight() != ALTO){
             double porcentaje = (this.getHeight() * 100) /ALTO;
-            System.out.println("por " + porcentaje);
             if(porcentaje > 100){
                 MARGEN_TOP = MARGEN_BASE_TOP + ((MARGEN_BASE_TOP * (porcentaje - 100))/100);
             }else if(porcentaje < 100){
@@ -73,9 +81,38 @@ public class PanelCampo extends JPanel{
             g2d.drawLine((int)MARGEN_RIGTH, (i * (int)alto) + (int)MARGEN_TOP, this.getWidth() - (int)MARGEN_RIGTH, (i * (int)alto) + (int)MARGEN_TOP);            
         }
         
-        //Dibujar Jugadores
+        //Dibujar Jugadores A
+        for(Jugador j : partido.jugadoresA){
+            if(j.getRol() == Jugador.PORTERO){
+                g.drawImage(R_PORTERO.getImage(), (int)getPosXJugador(j, ancho), (int)getPosYJugador(j, alto), (int)ancho, (int)alto, this);
+            }else if(j.getRol() == Jugador.DEFENSA){
+                g.drawImage(R_DEFENSA.getImage(), (int)getPosXJugador(j, ancho), (int)getPosYJugador(j, alto), (int)ancho, (int)alto, this);
+            }else{
+                g.drawImage(R_DELANTERO.getImage(), (int)getPosXJugador(j, ancho), (int)getPosYJugador(j, alto), (int)ancho, (int)alto, this);
+            }            
+        }
+        
+        //Dibujar Jugadores B
+        for(Jugador j : partido.jugadoresB){
+            if(j.getRol() == Jugador.PORTERO){
+                g.drawImage(A_PORTERO.getImage(), (int)getPosXJugador(j, ancho), (int)getPosYJugador(j, alto), (int)ancho, (int)alto, this);
+            }else if(j.getRol() == Jugador.DEFENSA){
+                g.drawImage(A_DEFENSA.getImage(), (int)getPosXJugador(j, ancho), (int)getPosYJugador(j, alto), (int)ancho, (int)alto, this);
+            }else{
+                g.drawImage(A_DELANTERO.getImage(), (int)getPosXJugador(j, ancho), (int)getPosYJugador(j, alto), (int)ancho, (int)alto, this);
+            }
+        }
+        
         
         super.paintComponent(g);
+    }
+    
+    private double getPosXJugador(Jugador j, double ancho){
+        return (j.getPosX() * ancho) + MARGEN_RIGTH;
+    }
+    
+    private double getPosYJugador(Jugador j, double alto){
+        return (j.getPosY() * alto) + MARGEN_TOP;
     }
     
 }

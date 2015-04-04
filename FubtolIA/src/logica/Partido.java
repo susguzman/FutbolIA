@@ -11,7 +11,7 @@ public class Partido {
     public static final int PRIMERO = 0, SEGUNDO = 1;    
     private boolean jugando;
     private int tiempo;
-    private LinkedList<Jugador> jugadoresA, jugadoresB;
+    public LinkedList<Jugador> jugadoresA, jugadoresB;
     
     public Partido(){
         //Inicializar
