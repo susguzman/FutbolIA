@@ -5,8 +5,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import logica.Control;
 import logica.Jugador;
-import logica.Partido;
 
 /**
  *
@@ -17,7 +17,7 @@ public class PanelCampo extends JPanel{
     private final int ANCHO = 897, ALTO = 600;  
     private double MARGEN_BASE_TOP = 13, MARGEN_BASE_RIGTH = 47;
     private double MARGEN_TOP, MARGEN_RIGTH;
-    private Partido partido;
+    private Control control;
     private final ImageIcon CAMPO = new ImageIcon(getClass().getResource("/img/campo.jpg"));
     private final ImageIcon R_PORTERO = new ImageIcon(getClass().getResource("/img/r_portero.png"));
     private final ImageIcon R_DEFENSA = new ImageIcon(getClass().getResource("/img/r_defensa.png"));
@@ -26,9 +26,9 @@ public class PanelCampo extends JPanel{
     private final ImageIcon A_DEFENSA = new ImageIcon(getClass().getResource("/img/a_defensa.png"));
     private final ImageIcon A_DELANTERO = new ImageIcon(getClass().getResource("/img/a_delantero.png"));
     
-    public PanelCampo(Partido p){
+    public PanelCampo(Control c){
         super();        
-        this.partido = p;
+        this.control = c;
     }
     
     @Override
@@ -82,7 +82,7 @@ public class PanelCampo extends JPanel{
         }
         
         //Dibujar Jugadores A
-        for(Jugador j : partido.jugadoresA){
+        for(Jugador j : control.partido.jugadoresA){
             if(j.getRol() == Jugador.PORTERO){
                 g.drawImage(R_PORTERO.getImage(), (int)getPosXJugador(j, ancho), (int)getPosYJugador(j, alto), (int)ancho, (int)alto, this);
             }else if(j.getRol() == Jugador.DEFENSA){
@@ -93,7 +93,7 @@ public class PanelCampo extends JPanel{
         }
         
         //Dibujar Jugadores B
-        for(Jugador j : partido.jugadoresB){
+        for(Jugador j : control.partido.jugadoresB){
             if(j.getRol() == Jugador.PORTERO){
                 g.drawImage(A_PORTERO.getImage(), (int)getPosXJugador(j, ancho), (int)getPosYJugador(j, alto), (int)ancho, (int)alto, this);
             }else if(j.getRol() == Jugador.DEFENSA){

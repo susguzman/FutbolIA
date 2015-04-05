@@ -15,13 +15,14 @@ public class Server {
 
     public ServerSocket server;
     public Socket socket;
-    public int puerto = 9000;
+    public int puerto;
     public BufferedReader in;
     public DataOutputStream out;
     public EventosSocket eventos;
 
-    public Server(EventosSocket e) throws IOException {
+    public Server(EventosSocket e, int puerto) throws IOException {
         this.eventos = e;
+        this.puerto = puerto;
         this.server = new ServerSocket(puerto);
     }
 
