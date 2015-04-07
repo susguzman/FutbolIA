@@ -1,6 +1,8 @@
 package logica;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import logica.conexion.Server;
 
 /**
@@ -16,8 +18,10 @@ public class Control implements Server.EventosSocket {
     public int puerto_servidor, puerto_cliente;
     public String ip_cliente;
     public Partido partido;
+    public EventosControl eventos;
 
-    public Control() {
+    public Control(EventosControl e) {
+        this.eventos = e;
         this.partido = new Partido();
     }
 
@@ -32,9 +36,20 @@ public class Control implements Server.EventosSocket {
     }
 
     public void activarMultiplayer() throws IOException {
-        this.servidor = new Server(this, puerto_servidor);
-        this.servidor.activarServidor();
-        this.enable_multiplayer = true;
+        servidor = new Server(this, puerto_servidor);
+        new Thread(new Runnable() {
+            
+            @Override
+            public void run() {
+                try {
+                    servidor.activarServidor();
+                } catch (IOException ex) {
+                    Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }).start();        
+        
+        enable_multiplayer = true;
     }
 
     public void desactivarMultiplayer() throws IOException {
@@ -47,6 +62,12 @@ public class Control implements Server.EventosSocket {
     @Override
     public void mensajeRecibido(String mensaje) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public static interface EventosControl{
+        public void cambiarTiempo();
+        public void cambiarMarcador();
+        public void actualizarUI();
     }
 
 }

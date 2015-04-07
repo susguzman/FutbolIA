@@ -68,7 +68,10 @@ public class Server {
     }
     
     public void desactivarServidor() throws IOException{
-        socket.close();
+        if(socket != null){
+            server.close();            
+            socket.close();
+        }
     }
     
     public static interface EventosSocket{

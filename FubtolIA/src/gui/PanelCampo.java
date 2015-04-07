@@ -15,7 +15,7 @@ import logica.Jugador;
 public class PanelCampo extends JPanel{
     
     private final int ANCHO = 897, ALTO = 600;  
-    private double MARGEN_BASE_TOP = 13, MARGEN_BASE_RIGTH = 47;
+    private double MARGEN_BASE_TOP = 15, MARGEN_BASE_RIGTH = 47;
     private double MARGEN_TOP, MARGEN_RIGTH;
     private Control control;
     private final ImageIcon CAMPO = new ImageIcon(getClass().getResource("/img/campo.jpg"));

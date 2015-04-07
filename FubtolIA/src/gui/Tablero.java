@@ -11,7 +11,7 @@ import logica.Control;
  *
  * @author Jesus
  */
-public class Tablero extends javax.swing.JFrame {
+public class Tablero extends javax.swing.JFrame implements Control.EventosControl{
 
     /**
      * Creates new form Tablero
@@ -50,6 +50,22 @@ public class Tablero extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         lb_puerto_server = new javax.swing.JLabel();
+        p_estadisticas = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        lb_equipo_a = new javax.swing.JLabel();
+        lb_equipo_b = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        lb_marcador_a = new javax.swing.JLabel();
+        lb_marcador_b = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        lb_tiempo = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        lb_parte = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        lb_tipo = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         tx_ip_cliente = new javax.swing.JTextField();
@@ -235,6 +251,100 @@ public class Tablero extends javax.swing.JFrame {
                 .addComponent(tp_multiplayer))
         );
 
+        p_estadisticas.setBackground(new java.awt.Color(204, 255, 255));
+        p_estadisticas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+        jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel9.setLayout(new java.awt.GridLayout(3, 2));
+
+        lb_equipo_a.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lb_equipo_a.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_equipo_a.setText("YO");
+        lb_equipo_a.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jPanel9.add(lb_equipo_a);
+
+        lb_equipo_b.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lb_equipo_b.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_equipo_b.setText("IA");
+        lb_equipo_b.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jPanel9.add(lb_equipo_b);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Equipo A");
+        jLabel8.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel9.add(jLabel8);
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel24.setText("Equipo A");
+        jLabel24.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel9.add(jLabel24);
+
+        lb_marcador_a.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lb_marcador_a.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_marcador_a.setText("0");
+        jPanel9.add(lb_marcador_a);
+
+        lb_marcador_b.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lb_marcador_b.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_marcador_b.setText("0");
+        jPanel9.add(lb_marcador_b);
+
+        jPanel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel10.setLayout(new java.awt.GridLayout(3, 2));
+
+        jLabel14.setText("Tiempo:");
+        jPanel10.add(jLabel14);
+
+        lb_tiempo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lb_tiempo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_tiempo.setText("lb_tiempo");
+        jPanel10.add(lb_tiempo);
+
+        jLabel16.setText("Parte:");
+        jPanel10.add(jLabel16);
+
+        lb_parte.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lb_parte.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_parte.setText("jLabel14");
+        jPanel10.add(lb_parte);
+
+        jLabel18.setText("Tipo:");
+        jPanel10.add(jLabel18);
+
+        lb_tipo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lb_tipo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_tipo.setText("jLabel14");
+        jPanel10.add(lb_tipo);
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setText("Detener");
+
+        javax.swing.GroupLayout p_estadisticasLayout = new javax.swing.GroupLayout(p_estadisticas);
+        p_estadisticas.setLayout(p_estadisticasLayout);
+        p_estadisticasLayout.setHorizontalGroup(
+            p_estadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(p_estadisticasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(p_estadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        p_estadisticasLayout.setVerticalGroup(
+            p_estadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(p_estadisticasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -243,7 +353,8 @@ public class Tablero extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(p_estadisticas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -253,14 +364,16 @@ public class Tablero extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(p_estadisticas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Control", jPanel3);
 
-        jLabel9.setText("Nueva IP");
+        jLabel9.setText("Nueva IP Cliente");
 
-        jLabel10.setText("Nuevo Puerto:");
+        jLabel10.setText("Puevo Puerto Cliente");
 
         jButton3.setText("Cambiar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -269,7 +382,7 @@ public class Tablero extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Nuevo Puerto");
+        jLabel4.setText("Nuevo Puerto Server");
 
         jButton2.setText("Cambiar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -288,17 +401,17 @@ public class Tablero extends javax.swing.JFrame {
                     .addComponent(tx_puerto_cliente)
                     .addComponent(tx_ip_cliente, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(tx_puerto_server, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel4))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGap(0, 137, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel9))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -320,7 +433,7 @@ public class Tablero extends javax.swing.JFrame {
                 .addComponent(tx_puerto_server, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addContainerGap(306, Short.MAX_VALUE))
+                .addContainerGap(352, Short.MAX_VALUE))
         );
 
         jLabel9.getAccessibleContext().setAccessibleName("Nueva IP Cliente");
@@ -399,8 +512,11 @@ public class Tablero extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_play_singleActionPerformed
 
     private void myInit() {
+        //Configuracion epecial de componentes
+        p_estadisticas.setVisible(false);
+        
         //Control
-        control = new Control();
+        control = new Control(this);
         control.enable_multiplayer = false;
         control.ip_cliente = "127.0.0.1";        
         control.puerto_cliente = 9000;
@@ -420,20 +536,20 @@ public class Tablero extends javax.swing.JFrame {
             bt_multiplayer.setText("Online");
             bt_multiplayer.setBackground(Color.GREEN);
             bt_play_multi.setEnabled(true);
-            try {
+            /*try {
                 control.activarMultiplayer();
             } catch (IOException ex) {
                 Logger.getLogger(Tablero.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
         } else {
             bt_multiplayer.setText("Offline");
             bt_multiplayer.setBackground(Color.red);
             bt_play_multi.setEnabled(false);
-            try {
+            /*try {
                 control.desactivarMultiplayer();
             } catch (IOException ex) {
                 Logger.getLogger(Tablero.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
         }
     }
 
@@ -476,17 +592,24 @@ public class Tablero extends javax.swing.JFrame {
     private javax.swing.JToggleButton bt_multiplayer;
     private javax.swing.JButton bt_play_multi;
     private javax.swing.JButton bt_play_single;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -494,13 +617,37 @@ public class Tablero extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lb_equipo_a;
+    private javax.swing.JLabel lb_equipo_b;
     private javax.swing.JLabel lb_ip_cliente;
+    private javax.swing.JLabel lb_marcador_a;
+    private javax.swing.JLabel lb_marcador_b;
+    private javax.swing.JLabel lb_parte;
     private javax.swing.JLabel lb_puerto_cliente;
     private javax.swing.JLabel lb_puerto_server;
+    private javax.swing.JLabel lb_tiempo;
+    private javax.swing.JLabel lb_tipo;
+    private javax.swing.JPanel p_estadisticas;
     private javax.swing.JTabbedPane tp_multiplayer;
     private javax.swing.JTextField tx_ip_cliente;
     private javax.swing.JTextField tx_puerto_cliente;
     private javax.swing.JTextField tx_puerto_server;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void cambiarTiempo() {
+        System.out.println("Cambio de tiempo");
+    }
+
+    @Override
+    public void cambiarMarcador() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void actualizarUI() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
