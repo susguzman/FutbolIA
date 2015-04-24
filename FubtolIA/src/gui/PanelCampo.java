@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.ImageIcon;
@@ -70,7 +71,7 @@ public class PanelCampo extends JPanel{
         double alto = (this.getHeight() - MARGEN_TOP * 2) / 11;
         
         //Dibujar lineas verticales 17       
-        g2d.setStroke(new BasicStroke(2f));
+        g2d.setStroke(new BasicStroke(1f));
         
         for (int i = 0; i < 18; i++) {
             g2d.drawLine((int)(i * ancho) + (int)MARGEN_RIGTH, (int)MARGEN_TOP, (int)(i * ancho) + (int)MARGEN_RIGTH, this.getHeight() - (int)MARGEN_TOP);            
@@ -82,7 +83,7 @@ public class PanelCampo extends JPanel{
         }
         
         //Dibujar Jugadores A
-        for(Jugador j : control.partido.jugadoresA){
+        for(Jugador j : control.jugadoresA){
             if(j.getRol() == Jugador.PORTERO){
                 g.drawImage(R_PORTERO.getImage(), (int)getPosXJugador(j, ancho), (int)getPosYJugador(j, alto), (int)ancho, (int)alto, this);
             }else if(j.getRol() == Jugador.DEFENSA){
@@ -93,7 +94,7 @@ public class PanelCampo extends JPanel{
         }
         
         //Dibujar Jugadores B
-        for(Jugador j : control.partido.jugadoresB){
+        for(Jugador j : control.jugadoresB){
             if(j.getRol() == Jugador.PORTERO){
                 g.drawImage(A_PORTERO.getImage(), (int)getPosXJugador(j, ancho), (int)getPosYJugador(j, alto), (int)ancho, (int)alto, this);
             }else if(j.getRol() == Jugador.DEFENSA){
@@ -103,6 +104,9 @@ public class PanelCampo extends JPanel{
             }
         }
         
+        //Dibujar balo
+        g.setColor(Color.WHITE);
+        g.fillOval((int) ((control.pos_x_b * ancho) + MARGEN_RIGTH) + 10, (int) ((control.pos_y_b * alto) + MARGEN_TOP) + 10, (int)ancho - 20, (int)alto - 20);
         
         super.paintComponent(g);
     }

@@ -1,9 +1,6 @@
 package gui;
 
 import java.awt.Color;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import logica.Control;
 
@@ -320,6 +317,11 @@ public class Tablero extends javax.swing.JFrame implements Control.EventosContro
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setText("Detener");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout p_estadisticasLayout = new javax.swing.GroupLayout(p_estadisticas);
         p_estadisticas.setLayout(p_estadisticasLayout);
@@ -436,7 +438,6 @@ public class Tablero extends javax.swing.JFrame implements Control.EventosContro
                 .addContainerGap(352, Short.MAX_VALUE))
         );
 
-        jLabel9.getAccessibleContext().setAccessibleName("Nueva IP Cliente");
         jLabel10.getAccessibleContext().setAccessibleName("Nuevo Puerto Cliente");
         jLabel10.getAccessibleContext().setAccessibleDescription("");
         jLabel4.getAccessibleContext().setAccessibleName("Nuevo Puerto Servidor");
@@ -508,16 +509,55 @@ public class Tablero extends javax.swing.JFrame implements Control.EventosContro
     }//GEN-LAST:event_bt_play_multiActionPerformed
 
     private void bt_play_singleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_play_singleActionPerformed
-        // TODO add your handling code here:
+        bt_play_single.setEnabled(false);
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                control.startIA();
+            }
+        }).start();
+        set_estadisticas(true);
     }//GEN-LAST:event_bt_play_singleActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        set_estadisticas(false);
+        if(control.tipo_juego == control.CONTRA_IA){            
+            bt_play_single.setEnabled(true);
+            set_estadisticas(false);
+            control.stopIA();
+        }else{
+            
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void set_estadisticas(boolean value){
+        p_estadisticas.setVisible(value);
+        lb_equipo_a.setText(control.equipo_a);
+        lb_equipo_b.setText(control.equipo_b);
+        lb_marcador_a.setText(control.goles_a + "");
+        lb_marcador_b.setText(control.goles_b + "");
+        lb_parte.setText(control.parte);
+        
+        if(control.segundos < 10){
+            lb_tiempo.setText("0" + control.minutos + ":0" + control.segundos);
+        }else{
+           lb_tiempo.setText("0" + control.minutos + ":" + control.segundos);
+        }
+        
+        if(control.tipo_juego == Control.CONTRA_IA){
+            lb_tipo.setText("Singleplayer");
+        }else{
+            lb_tipo.setText("Multiplayer");
+        }
+    }
+    
     private void myInit() {
         //Configuracion epecial de componentes
         p_estadisticas.setVisible(false);
         
         //Control
         control = new Control(this);
-        control.enable_multiplayer = false;
         control.ip_cliente = "127.0.0.1";        
         control.puerto_cliente = 9000;
         control.puerto_servidor = 8000;
@@ -638,16 +678,38 @@ public class Tablero extends javax.swing.JFrame implements Control.EventosContro
 
     @Override
     public void cambiarTiempo() {
-        System.out.println("Cambio de tiempo");
+        if(control.segundos < 10){
+            lb_tiempo.setText("0" + control.minutos + ":0" + control.segundos);
+        }else{
+           lb_tiempo.setText("0" + control.minutos + ":" + control.segundos);
+        }
+        //System.out.println("Cambio de tiempo: " + control.minutos + ":" + control.segundos);
     }
 
     @Override
     public void cambiarMarcador() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        lb_marcador_a.setText(control.goles_a + "");
+        lb_marcador_b.setText(control.goles_b + "");
     }
 
     @Override
     public void actualizarUI() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jPanel2.updateUI();
+        System.out.println("actualizado");
+    }
+
+    @Override
+    public void terminarPartido() {
+        control.jugando = false;
+        control.espera = false;
+        
+        bt_play_single.setEnabled(true);
+        set_estadisticas(false);
+        JOptionPane.showMessageDialog(this, "Juego terminado");
+    }
+
+    @Override
+    public void setEstadisticas() {
+        set_estadisticas(true);
     }
 }
